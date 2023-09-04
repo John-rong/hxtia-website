@@ -15,9 +15,13 @@
               <n-input v-model:value="model.content" placeholder="想说的话" />
             </n-form-item>
             <n-button strong secondary type="success" @click="submit">
-              {{status}}
+              {{ status }}
             </n-button>
           </n-tab-pane>
+          
+
+          
+          
         </n-tabs>
       </n-card>
     </div>
@@ -29,6 +33,7 @@
 import { computed, ref } from "vue";
 import { ImgUtil } from "../../utils/imgUtils"
 import tcbapp from "../../utils/tcbInit";
+import throttle from "../../utils/throttle";
 const wechatImg = ImgUtil.getImg('wechat.jpg')
 const model = ref({
   content: "",
@@ -50,9 +55,9 @@ const autoCompleteOptions = computed(() => {
 const status = ref("一键发送")
 
 //发送邮件
-const submit = () => {
+const submit = throttle(() => {
 
-  if(model.value.content.trim() === ""){
+  if (model.value.content.trim() === "") {
     window.$message.warning("留言不能为空")
     return
   }
@@ -65,22 +70,34 @@ const submit = () => {
       name: "sendEmail",
       // 传给云函数的参数
       data: {
-        email:model.value.email,
-        userEmail:model.value.userEmail,
-        content:model.value.content
+        email: model.value.email,
+        userEmail: model.value.userEmail,
+        content: model.value.content
       }
     })
     .then((res) => {
       status.value = "一键发送"
       window.$message.success("发送成功")
+      showConfetti()
       console.log(res);
     })
-    .catch(()=>{
+    .catch(() => {
       status.value = "一键发送"
       console.error
       window.$message.error("发送失败")
     });
 
+}, 1000, { leading: true, trailing: false })
+
+import JSConfetti from 'js-confetti'
+
+const confetti = new JSConfetti()
+
+const showConfetti = () => {
+  confetti.addConfetti({
+    confettiRadius: 6,
+    confettiNumber: 400,
+  })
 }
 
 

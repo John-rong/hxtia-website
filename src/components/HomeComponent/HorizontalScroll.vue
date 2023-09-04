@@ -59,7 +59,7 @@ const scrollPosition = reactive({
 const handleScroll = (e: { target: { scrollLeft: number; scrollTop: number; }; }) => {
     scrollPosition.left = e.target.scrollLeft;
     scrollPosition.top = e.target.scrollTop;
-    console.log(scrollPosition.left)
+    // console.log(scrollPosition.left)
 }
 
 onMounted(() => {
