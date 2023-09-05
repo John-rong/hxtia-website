@@ -1,6 +1,7 @@
 <template>
   <div class="contact-all">
     <div class="contact-card">
+       
       <n-card>
         <n-tabs type="line" size="large" :tabs-padding="20">
           <n-tab-pane name="纳新微信群">
@@ -18,10 +19,17 @@
               {{ status }}
             </n-button>
           </n-tab-pane>
-          
 
-          
-          
+          <n-tab-pane name="点赞">
+            <n-form-item label="点赞数">
+              {{ like }}
+            </n-form-item>
+            <n-button type="primary" ghost @click="tolike">
+              点一个赞👍
+            </n-button>
+          </n-tab-pane>
+
+
         </n-tabs>
       </n-card>
     </div>
@@ -30,7 +38,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { ImgUtil } from "../../utils/imgUtils"
 import tcbapp from "../../utils/tcbInit";
 import throttle from "../../utils/throttle";
@@ -99,6 +107,47 @@ const showConfetti = () => {
     confettiNumber: 400,
   })
 }
+
+const like = ref()
+const getlikenum = () => {
+  tcbapp
+    .callFunction({
+      // 云函数名称
+      name: "likeNum",
+      data: {}
+    })
+    .then((res) => {
+      like.value = res.result.likenum
+    })
+    .catch(() => {
+      console.error
+      window.$message.error("加载失败")
+    });
+}
+onMounted(() => {
+  getlikenum()
+})
+
+//点赞
+const tolike = throttle(() => {
+
+  tcbapp
+    .callFunction({
+      // 云函数名称
+      name: "onlike",
+      data: {}
+    })
+    .then(() => {
+      window.$message.success("点赞成功")
+      showConfetti()
+      getlikenum()
+    })
+    .catch(() => {
+      console.error
+      window.$message.error("失败")
+    });
+
+}, 1000, { leading: true, trailing: false })
 
 
 </script>
