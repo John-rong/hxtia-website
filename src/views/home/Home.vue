@@ -3,7 +3,7 @@
         <Lottie class="animation-down" :animation-data="downAnimation"></Lottie>
         <LogoCanvas></LogoCanvas>
         <!-- <video ref="videoEl" id="videId" preload="auto" src="../../assets/nlogo.mp4" class="video" muted></video>  -->
-    </div> 
+    </div>
     <div class="introduce">
         <div class="introduce-word">
             <h1 :class="sY > 2100 ? 'fade-in-bottom' : 'nothing'">Hi,</h1>
@@ -34,7 +34,7 @@
         <h3> 如果你也不甘被环境束缚， </h3>
         <h3> .... </h3>
         <h3> 现在 </h3>
-        <h3> 加入我们! </h3>
+        <h3 @click="toPath('contact')"> 加入我们! </h3>
 
         <div class="contact"> </div>
     </div>
@@ -50,6 +50,7 @@ import { DepartmentOptions } from '../../components/HomeComponent/options'
 import { defineAsyncComponent } from 'vue';
 import { useLoadingBar } from 'naive-ui'
 import LogoCanvas from '../../components/HomeComponent/LogoCanvas.vue';
+import router from '../../router';
 
 //异步组件加载
 const isLoaded = ref(false)
@@ -94,6 +95,10 @@ const perpecetageFn = (x: number) => {
     if (temp * 100 > 0) {
         perpecetage.value = temp * 100 + '%'
     }
+}
+
+const toPath = (url: string) => {
+    router.push({ name: url })
 }
 
 
@@ -228,9 +233,8 @@ span {
 }
 
 .contact {
-    height: 200px;
+    height: 230px;
 }
-
 
 /* 移动端 */
 @media screen and (max-width: 992px) {

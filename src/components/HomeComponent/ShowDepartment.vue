@@ -130,7 +130,8 @@ p {
     width: 164px;
     height: 162px;
     transform: translateY(-60px) translateX(-160px);
-    background: url(https://files.wunderminibar.tk/2023/08/6d500a85bb5e6cebca20602b8d63e467.png) no-repeat 50%;
+    /* background: url(https://files.wunderminibar.tk/2023/08/6d500a85bb5e6cebca20602b8d63e467.png) no-repeat 50%; */
+    background: url(https://john-hxtia-1312056588.cos.ap-shanghai.myqcloud.com/logoimg/hxlogo.png) no-repeat 50%;
     background-size: contain;
     pointer-events: none;
 }
@@ -246,7 +247,8 @@ p {
     width: 79px;
     height: 78px;
     transform: translate(0);
-    background: url(https://files.wunderminibar.tk/2023/08/6d500a85bb5e6cebca20602b8d63e467.png) no-repeat 50%;
+    /* background: url(https://files.wunderminibar.tk/2023/08/6d500a85bb5e6cebca20602b8d63e467.png) no-repeat 50%; */
+    background: url(https://john-hxtia-1312056588.cos.ap-shanghai.myqcloud.com/logoimg/hxlogo.png) no-repeat 50%;
     background-size: contain;
     pointer-events: none;
 }

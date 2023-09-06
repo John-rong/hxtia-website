@@ -2,14 +2,13 @@
     <div class="bigcard">
         <div class="three-img">
             <div class="card-img" v-for="img in bigCardobj.img" :key="img">
-                <NImage :img-props="{ 'style': 'width:100%;border-radius: 10px;' }" lazy
-                    :src="`${img}`"></NImage>
+                <NImage :img-props="{ 'style': 'width:100%;border-radius: 10px;' }" lazy :src="`${img}`"></NImage>
             </div>
         </div>
         <div class="card-headline">
-            <div class="card-title">{{bigCardobj.title}}</div>
+            <div class="card-title">{{ bigCardobj.title }}</div>
             <div class="card-text">
-                <NIcon :component="ChevronBack" size="10" />{{bigCardobj.text}}
+                <NIcon :component="ChevronBack" size="10" />{{ bigCardobj.text }}
             </div>
         </div>
     </div>
@@ -76,5 +75,25 @@ defineProps<{
     white-space: break-spaces;
     padding: 10px 0;
     border-bottom: 2px solid var(--text-color-base);
+}
+
+@media screen and (max-width: 992px) {
+
+    .three-img {
+        margin: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: 700px;
+    }
+
+    .card-img {
+        margin: 10px;
+        width: 300px;
+        border-radius: 10px;
+        box-shadow: 0 0 0 8px rgb(255 255 255 / 20%);
+    }
+
 }
 </style>  

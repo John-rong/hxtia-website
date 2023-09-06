@@ -4,6 +4,7 @@
 
         <!-- 左滑提示 -->
         <Lottie class="index-group-box-left" :animation-data="slideleft"></Lottie>
+        <span class="index-group-tips">下方可以向左滑动</span>
 
         <!-- 卡⽚ -->
         <div class="index-group-boxIn" ref="groupBoxRef">
@@ -68,6 +69,7 @@ onMounted(() => {
     groupBoxRef.value.addEventListener('wheel', (event: { preventDefault: () => void; deltaY: any; }) => {
         event.preventDefault()
         groupBoxRef.value.scrollLeft += event.deltaY
+        console.log(groupBoxRef.value.scrollY)
     })
 
 })
@@ -82,11 +84,11 @@ onUnmounted(() => {
 
 // 点击切换
 const current = ref<number | undefined>(1)
-const toLeft = (num:number) =>{
-    if(num == 1){
+const toLeft = (num: number) => {
+    if (num == 1) {
         groupBoxRef.value.scrollLeft = 500
-    }else{
-        groupBoxRef.value.scrollLeft = num*1000
+    } else {
+        groupBoxRef.value.scrollLeft = num * 1000
     }
 }
 
@@ -155,10 +157,21 @@ const toLeft = (num:number) =>{
     margin: auto;
 }
 
+.index-group-tips {
+    display: none;
+}
+
 @media screen and (max-width: 992px) {
 
-    .step{
+    .step {
         visibility: hidden;
+    }
+
+    .index-group-tips {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        color: var(--text-color-3);
     }
 
 }
