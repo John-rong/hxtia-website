@@ -28,7 +28,7 @@
 
 <script lang="ts" setup>
 import Lottie from '../lottie/index.vue'
-import { ref, reactive, onMounted, onUnmounted } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import slideleft from '../../../src/assets/json/DTeyD3NZ3J.json'
 import CardComponent from './CardComponent.vue'
 import { CardOptions, BigCardOptions } from './options'
@@ -69,18 +69,17 @@ onMounted(() => {
     groupBoxRef.value.addEventListener('wheel', (event: { preventDefault: () => void; deltaY: any; }) => {
         event.preventDefault()
         groupBoxRef.value.scrollLeft += event.deltaY
-        console.log(groupBoxRef.value.scrollY)
     })
 
 })
 
-onUnmounted(() => {
-    groupBoxRef.value.removeEventListener('scroll', handleScroll);
-    groupBoxRef.value.removeEventListener('wheel', (event: { preventDefault: () => void; deltaY: any; }) => {
-        event.preventDefault()
-        groupBoxRef.value.scrollLeft += event.deltaY
-    })
-})
+// onUnmounted(() => {
+//     groupBoxRef.value.removeEventListener('scroll', handleScroll);
+//     groupBoxRef.value.removeEventListener('wheel', (event: { preventDefault: () => void; deltaY: any; }) => {
+//         event.preventDefault()
+//         groupBoxRef.value.scrollLeft += event.deltaY
+//     })
+// })
 
 // 点击切换
 const current = ref<number | undefined>(1)

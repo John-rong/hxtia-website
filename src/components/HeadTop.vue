@@ -62,7 +62,11 @@ const handleSelect = (key: string) => {
     if(key != 'login'){
         toPath(key)
     }else{
-        window.$message.success('暂未开放...')
+        window.$dialog.success({
+          title: '已自动匿名登录',
+          content: '其他功能，敬请期待...',
+          positiveText: '确定',
+        })
     }  
 }
 

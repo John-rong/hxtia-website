@@ -32,8 +32,8 @@
         <h3> 如果你对技术充满热情， </h3>
         <h3> 如果你也想策划一场盛大的活动， </h3>
         <h3> 如果你也不甘被环境束缚， </h3>
-        <h3> .... </h3>
-        <h3> 现在 </h3>
+        <h3 @click="toPath('contact')"> .... </h3>
+        <h3 @click="toPath('contact')"> 现在 </h3>
         <h3 @click="toPath('contact')"> 加入我们! </h3>
 
         <div class="contact"> </div>
